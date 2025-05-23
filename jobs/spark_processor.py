@@ -3,7 +3,6 @@ from pyspark.sql.streaming import DataStreamReader
 from pyspark.sql.types import StringType, StructField, DataType
 from pyspark.sql.types import StructType, StructField, StringType, TimestampType, DoubleType, IntegerType
 from pyspark.sql.functions import from_json, col
-from FinancialTransactions.config.config import configuration
 import logging
 from pyspark.conf import SparkConf
 
@@ -77,8 +76,8 @@ if __name__ == "__main__":
     SRC_TOPIC = "financial_transactions"
     AGGREGATES_TOPIC = "transaction_aggregates"
     ANOMALIES_TOPIC = "transaction_anomalies"
-    CHECKPOINT_DIR = "/mnt/spark-checkpoints"
-    STATES_DIR = "/mnt/spark-state"
+    CHECKPOINT_DIR = "/opt/spark/spark-checkpoint"
+    STATES_DIR = "/opt/spark/spark-state"
     spark = (
         SparkSession.builder.appName("FinancialTransactions")
         .config("spark.sql.streaming.checkpointLocation", CHECKPOINT_DIR)
